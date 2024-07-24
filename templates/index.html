@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gold Price and Volume Analysis</title>
+</head>
+<body>
+    <h1>Gold Price and Volume Analysis</h1>
+    <form method="post">
+        <label for="period">Period:</label>
+        <select id="period" name="period">
+            {% for option in period_options %}
+            <option value="{{ option }}" {% if option == request.form.get('period', '5d') %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+        </select>
+        <label for="interval">Interval:</label>
+        <select id="interval" name="interval">
+            {% for option in interval_options %}
+            <option value="{{ option }}" {% if option == request.form.get('interval', '1h') %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Update">
+    </form>
+    <img src="{{ plot_url }}" alt="Gold Price and Volume Analysis">
+    <p>{{ demand_text }}</p>
+    <p>{{ latest_price_text }}</p>
+    <h2>Gold Price Prediction</h2>
+    <img src="{{ prediction_plot_url }}" alt="Gold Price Prediction">
+    <p>{{ prediction_text }}</p>
+    <p>{{ latest_price_text }}</p>
+</body>
+</html>
